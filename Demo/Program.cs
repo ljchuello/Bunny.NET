@@ -13,8 +13,8 @@ namespace Demo
         {
             try
             {
-                BunnyClient _bunnyClient = new BunnyClient(File.ReadAllText("D:\\BunnyNET.txt"));
-                var a = await _bunnyClient.Zone.Get(202199);
+                BunnyClient _bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
+                var a = await _bunnyClient.Zone.List();
             }
             catch (Exception ex)
             {

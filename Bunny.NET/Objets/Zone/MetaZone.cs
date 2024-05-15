@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Bunny.NET.Objets.Zone
 {
-    public class Response
+    public class MetaZone
     {
         [JsonProperty("Items")]
-        public List<Record.Record> Items { get; set; }
+        public List<Zone> Items { get; set; }
 
         [JsonProperty("CurrentPage")]
         public int CurrentPage { get; set; } 
