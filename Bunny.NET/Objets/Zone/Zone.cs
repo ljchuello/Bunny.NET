@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bunny.NET.Enums;
 using Newtonsoft.Json;
 
 namespace Bunny.NET.Objets.Zone
@@ -46,6 +47,6 @@ namespace Bunny.NET.Objets.Zone
         public bool? LoggingIPAnonymizationEnabled { get; set; }
 
         [JsonProperty("LogAnonymizationType", NullValueHandling = NullValueHandling.Ignore)]
-        public int? LogAnonymizationType { get; set; }
+        public LogAnonymizationType? LogAnonymizationType { get; set; }
     }
 }

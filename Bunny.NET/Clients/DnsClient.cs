@@ -75,6 +75,18 @@ namespace Bunny.NET.Clients
                 return JsonConvert.DeserializeObject<Zone>(jsonResponse) ?? new Zone();
             }
 
+            public async Task<Zone> Update(Zone zone)
+            {
+                // Preparing raw
+                string raw = $"{{ \"CustomNameserversEnabled\": {(zone.CustomNameserversEnabled == true ? "true" : "false")}, \"Nameserver1\": \"{zone.Nameserver1}\", \"Nameserver2\": \"{zone.Nameserver2}\", \"SoaEmail\": \"{zone.SoaEmail}\", \"LoggingEnabled\": {(zone.LoggingEnabled == true ? "true" : "false")}, \"LogAnonymizationType\": {(long)zone.LogAnonymizationType}, \"LoggingIPAnonymizationEnabled\": {(zone.LoggingIPAnonymizationEnabled == true ? "true" : "false")} }}";
+
+                // Send
+                string jsonResponse = await Core.SendPostRequest(_token, $"/dnszone/{zone.Id}", raw);
+
+                // Return
+                return JsonConvert.DeserializeObject<Zone>(jsonResponse) ?? new Zone();
+            }
+
             public async Task Delete(Zone zone)
             {
                 // Send

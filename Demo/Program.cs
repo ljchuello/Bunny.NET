@@ -14,19 +14,18 @@ namespace Demo
         {
             try
             {
-                BunnyClient _bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
+                BunnyClient bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
 
                 // Get
-                List<Zone> listZone = await _bunnyClient.Dns.Zone.List();
+                Zone zone = await bunnyClient.Dns.Zone.Get(204058);
 
-                foreach (Zone zone in listZone)
-                {
-                    Console.WriteLine($"Eliminar {zone.Domain}? Y/n");
-                    if (Console.ReadLine().ToLower() == "y")
-                    {
-                        await _bunnyClient.Dns.Zone.Delete(zone);
-                    }
-                }
+                // Set
+                zone.SoaEmail = "ljchuello@gmail.com";
+                zone.LoggingEnabled = true;
+                zone.LoggingIPAnonymizationEnabled = false;
+
+                // Update
+                zone = await bunnyClient.Dns.Zone.Update(zone);
             }
             catch (Exception ex)
             {
