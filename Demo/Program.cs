@@ -1,4 +1,6 @@
 ﻿using Bunny.NET;
+using Bunny.NET.Enums;
+using Bunny.NET.Objets.Record;
 using Bunny.NET.Objets.Zone;
 
 namespace Demo
@@ -20,12 +22,17 @@ namespace Demo
                 Zone zone = await bunnyClient.Dns.Zone.Get(204058);
 
                 // Set
-                zone.SoaEmail = "ljchuello@gmail.com";
-                zone.LoggingEnabled = true;
-                zone.LoggingIPAnonymizationEnabled = false;
+                Record record = new Record();
+                record.Type = RecordType.A;
+                record.Ttl = 300;
+                record.Value = "8.8.8.8";
+                record.Name = "google";
+                record.EnviromentalVariables = new List<EnviromentalVariable>();
+                record.EnviromentalVariables.Add(new EnviromentalVariable { Name = "Lalo", Value = "Landa" });
+                record.EnviromentalVariables.Add(new EnviromentalVariable { Name = "Leonardo", Value = "Chuello" });
 
-                // Update
-                zone = await bunnyClient.Dns.Zone.Update(zone);
+                // Create
+                record = await bunnyClient.Dns.Record.Create(zone.Id, record);
             }
             catch (Exception ex)
             {

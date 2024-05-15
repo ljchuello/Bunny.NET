@@ -67,6 +67,33 @@ namespace Bunny.NET
             }
         }
 
+        public static async Task<string> SendPutRequest(string token, string url, string raw)
+        {
+            // Request
+            using (RestClient restClient = new RestClient(ApiServer))
+            {
+                RestRequest restRequest = new RestRequest(url, Method.Put);
+                restRequest.AddHeader("AccessKey", $"{token}");
+                restRequest.AddJsonBody(raw, "application/json");
+                RestResponse response = await restClient.ExecuteAsync(restRequest);
+
+                // Set
+                string content = response.Content;
+                HttpStatusCode httpStatusCode = response.StatusCode;
+
+                // Switch
+                switch (httpStatusCode)
+                {
+                    case HttpStatusCode.Created:
+                        return content;
+
+                    default:
+                        Error error = JsonConvert.DeserializeObject<Error>(content);
+                        throw new Exception($"{error.Message}");
+                }
+            }
+        }
+
         public static async Task SendDeleteRequest(string token, string url)
         {
             // Request

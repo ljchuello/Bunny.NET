@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Emit;
 using System.Threading.Tasks;
+using Bunny.NET.Objets.Record;
 using Bunny.NET.Objets.Zone;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Bunny.NET.Clients
 {
@@ -11,11 +12,13 @@ namespace Bunny.NET.Clients
         private readonly string _token;
 
         public ZoneClient Zone { get; }
+        public RecordClient Record { get; }
 
         public DnsClient(string apiKey)
         {
             _token = apiKey;
             Zone = new ZoneClient(_token);
+            Record = new RecordClient(_token);
         }
 
         public class ZoneClient
@@ -97,6 +100,28 @@ namespace Bunny.NET.Clients
             {
                 // Send
                 await Core.SendDeleteRequest(_token, $"/dnszone/{zoneId}");
+            }
+        }
+
+        public class RecordClient
+        {
+            private readonly string _token;
+
+            public RecordClient(string token)
+            {
+                _token = token;
+            }
+
+            public async Task<Record> Create(long? zoneId, Record record)
+            {
+                // Preparing raw
+                string raw = JsonConvert.SerializeObject(record, Formatting.Indented);
+
+                // Send
+                string jsonResponse = await Core.SendPutRequest(_token, $"/dnszone/{zoneId}/records", raw);
+
+                // Return
+                return JsonConvert.DeserializeObject<Record>(jsonResponse) ?? new Record();
             }
         }
     }
