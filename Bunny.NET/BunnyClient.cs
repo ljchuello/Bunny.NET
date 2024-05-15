@@ -1,6 +1,4 @@
-﻿using System;
-using Bunny.NET.DnsClient;
-using Bunny.NET.Objets.Zone;
+﻿using Bunny.NET.Clients;
 
 namespace Bunny.NET
 {
@@ -12,9 +10,9 @@ namespace Bunny.NET
         {
             ApiKey = apiKey;
 
-            Zone = new ZoneClient(apiKey);
+            Dns = new DnsClient(apiKey);
         }
 
-        public ZoneClient Zone { get; }
+        public DnsClient Dns { get; }
     }
 }

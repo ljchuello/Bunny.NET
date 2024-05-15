@@ -1,4 +1,5 @@
 ﻿using Bunny.NET;
+using Bunny.NET.Objets.Zone;
 
 namespace Demo
 {
@@ -14,7 +15,18 @@ namespace Demo
             try
             {
                 BunnyClient _bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
-                var a = await _bunnyClient.Zone.List();
+
+                // Get
+                List<Zone> listZone = await _bunnyClient.Dns.Zone.List();
+
+                foreach (Zone zone in listZone)
+                {
+                    Console.WriteLine($"Eliminar {zone.Domain}? Y/n");
+                    if (Console.ReadLine().ToLower() == "y")
+                    {
+                        await _bunnyClient.Dns.Zone.Delete(zone);
+                    }
+                }
             }
             catch (Exception ex)
             {

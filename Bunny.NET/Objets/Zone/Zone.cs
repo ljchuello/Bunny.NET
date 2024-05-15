@@ -7,7 +7,7 @@ namespace Bunny.NET.Objets.Zone
     public class Zone
     {
         [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public long? Id { get; set; }
 
         [JsonProperty("Domain", NullValueHandling = NullValueHandling.Ignore)]
         public string Domain { get; set; }
