@@ -7,45 +7,45 @@ namespace Bunny.NET.Objets.Zone
     public class Zone
     {
         [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
-        public int Id { get; set; } = 0;
+        public int? Id { get; set; }
 
         [JsonProperty("Domain", NullValueHandling = NullValueHandling.Ignore)]
-        public string Domain { get; set; } = string.Empty;
+        public string Domain { get; set; }
 
         [JsonProperty("Records", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Record.Record> Records { get; set; } = new List<Record.Record>();
+        public List<Record.Record> Records { get; set; }
 
         [JsonProperty("DateModified", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime DateModified { get; set; } = DateTime.MinValue;
+        public DateTime? DateModified { get; set; }
 
         [JsonProperty("DateCreated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime DateCreated { get; set; } = DateTime.MinValue;
+        public DateTime? DateCreated { get; set; }
 
         [JsonProperty("NameserversDetected", NullValueHandling = NullValueHandling.Ignore)]
-        public bool NameserversDetected { get; set; } = false;
+        public bool? NameserversDetected { get; set; }
 
         [JsonProperty("CustomNameserversEnabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool CustomNameserversEnabled { get; set; } = false;
+        public bool? CustomNameserversEnabled { get; set; }
 
         [JsonProperty("Nameserver1", NullValueHandling = NullValueHandling.Ignore)]
-        public string Nameserver1 { get; set; } = string.Empty;
+        public string Nameserver1 { get; set; }
 
         [JsonProperty("Nameserver2", NullValueHandling = NullValueHandling.Ignore)]
-        public string Nameserver2 { get; set; } = string.Empty;
+        public string Nameserver2 { get; set; }
 
         [JsonProperty("SoaEmail", NullValueHandling = NullValueHandling.Ignore)]
-        public string SoaEmail { get; set; } = string.Empty;
+        public string SoaEmail { get; set; }
 
         [JsonProperty("NameserversNextCheck", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime NameserversNextCheck { get; set; } = new DateTime(1900, 01, 01);
+        public DateTime? NameserversNextCheck { get; set; }
 
         [JsonProperty("LoggingEnabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool LoggingEnabled { get; set; } = false;
+        public bool? LoggingEnabled { get; set; }
 
         [JsonProperty("LoggingIPAnonymizationEnabled", NullValueHandling = NullValueHandling.Ignore)]
-        public bool LoggingIPAnonymizationEnabled { get; set; } = false;
+        public bool? LoggingIPAnonymizationEnabled { get; set; }
 
         [JsonProperty("LogAnonymizationType", NullValueHandling = NullValueHandling.Ignore)]
-        public int LogAnonymizationType { get; set; } = 0;
+        public int? LogAnonymizationType { get; set; }
     }
 }
