@@ -1,8 +1,8 @@
-using Bunny.NET.Objets.Zone;
+using Bunny.NET.Objets.Dns;
 
 namespace Bunny.NET.Tests
 {
-    public class DnsClientTests : IDisposable
+    public class DnsClientTest : IDisposable
     {
         private Zone _zoneCreateTrue;
         private Zone _zoneCreateFalse;

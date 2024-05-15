@@ -1,24 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Bunny.NET.Objets.Record;
-using Bunny.NET.Objets.Zone;
+using Bunny.NET.Objets.Dns;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Bunny.NET.Clients
 {
     public class DnsClient
     {
-        private readonly string _token;
-
         public ZoneClient Zone { get; }
         public RecordClient Record { get; }
 
-        public DnsClient(string apiKey)
+        public DnsClient(string token)
         {
-            _token = apiKey;
-            Zone = new ZoneClient(_token);
-            Record = new RecordClient(_token);
+            Zone = new ZoneClient(token);
+            Record = new RecordClient(token);
         }
 
         public class ZoneClient

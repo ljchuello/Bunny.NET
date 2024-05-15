@@ -2,18 +2,18 @@
 using Bunny.NET.Enums;
 using Newtonsoft.Json;
 
-namespace Bunny.NET.Objets.Record
+namespace Bunny.NET.Objets.Dns
 {
     public class Record
     {
         [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Id { get; set; }
+        public long? Id { get; set; }
 
         [JsonProperty("Type", NullValueHandling = NullValueHandling.Ignore)]
         public RecordType? Type { get; set; }
 
         [JsonProperty("Ttl", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Ttl { get; set; }
+        public long? Ttl { get; set; }
 
         [JsonProperty("Value", NullValueHandling = NullValueHandling.Ignore)]
         public string Value { get; set; }
@@ -22,16 +22,16 @@ namespace Bunny.NET.Objets.Record
         public string Name { get; set; }
 
         [JsonProperty("Weight", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Weight { get; set; }
+        public long? Weight { get; set; }
 
         [JsonProperty("Priority", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Priority { get; set; }
+        public long? Priority { get; set; }
 
         [JsonProperty("Port", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Port { get; set; }
+        public long? Port { get; set; }
 
         [JsonProperty("Flags", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Flags { get; set; }
+        public long? Flags { get; set; }
 
         [JsonProperty("Tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
@@ -40,7 +40,7 @@ namespace Bunny.NET.Objets.Record
         public bool? Accelerated { get; set; }
 
         [JsonProperty("AcceleratedPullZoneId", NullValueHandling = NullValueHandling.Ignore)]
-        public int? AcceleratedPullZoneId { get; set; }
+        public long? AcceleratedPullZoneId { get; set; }
 
         [JsonProperty("LinkName", NullValueHandling = NullValueHandling.Ignore)]
         public string LinkName { get; set; }
@@ -52,7 +52,7 @@ namespace Bunny.NET.Objets.Record
         public GeolocationInfo GeolocationInfo { get; set; }
 
         [JsonProperty("MonitorStatus", NullValueHandling = NullValueHandling.Ignore)]
-        public int? MonitorStatus { get; set; }
+        public long? MonitorStatus { get; set; }
 
         [JsonProperty("MonitorType", NullValueHandling = NullValueHandling.Ignore)]
         public MonitorType? MonitorType { get; set; }
@@ -88,7 +88,7 @@ namespace Bunny.NET.Objets.Record
         public string Country { get; set; }
 
         [JsonProperty("ASN", NullValueHandling = NullValueHandling.Ignore)]
-        public int? ASN { get; set; }
+        public long? ASN { get; set; }
 
         [JsonProperty("OrganizationName", NullValueHandling = NullValueHandling.Ignore)]
         public string OrganizationName { get; set; }
@@ -106,10 +106,10 @@ namespace Bunny.NET.Objets.Record
         public string City { get; set; }
 
         [JsonProperty("Latitude", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Latitude { get; set; }
+        public long? Latitude { get; set; }
 
         [JsonProperty("Longitude", NullValueHandling = NullValueHandling.Ignore)]
-        public int? Longitude { get; set; }
+        public long? Longitude { get; set; }
     }
 
     public class EnviromentalVariable

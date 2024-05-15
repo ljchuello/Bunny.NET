@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Bunny.NET.Enums;
 using Newtonsoft.Json;
 
-namespace Bunny.NET.Objets.Zone
+namespace Bunny.NET.Objets.Dns
 {
     public class Zone
     {
@@ -14,7 +14,7 @@ namespace Bunny.NET.Objets.Zone
         public string Domain { get; set; }
 
         [JsonProperty("Records", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Record.Record> Records { get; set; }
+        public List<Record> Records { get; set; }
 
         [JsonProperty("DateModified", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? DateModified { get; set; }
