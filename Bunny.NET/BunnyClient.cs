@@ -10,10 +10,12 @@ namespace Bunny.NET
         {
             ApiKey = apiKey;
 
+            Country = new CountryClient(apiKey);
             Dns = new DnsClient(apiKey);
             Region = new RegionClient(apiKey);
         }
 
+        public CountryClient Country { get; }
         public DnsClient Dns { get; }
         public RegionClient Region { get; }
     }

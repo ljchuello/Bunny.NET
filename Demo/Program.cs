@@ -1,5 +1,6 @@
 ﻿using Bunny.NET;
 using Bunny.NET.Enums;
+using Bunny.NET.Objets;
 using Bunny.NET.Objets.Dns;
 using Bunny.NET.Objets.Region;
 
@@ -18,7 +19,7 @@ namespace Demo
             {
                 BunnyClient bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
 
-                List<Region> list = await bunnyClient.Region.List();
+                List<Country> list = await bunnyClient.Country.List();
 
                 // Get
                 Zone zone = await bunnyClient.Dns.Zone.Get(204058);

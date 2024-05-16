@@ -5,7 +5,7 @@ namespace Bunny.NET.Tests
     public class RegionClientTest
     {
         [Fact]
-        public async Task DnsZoneCreateTrue()
+        public async Task RegionListTrue()
         {
             // Arrange
             BunnyClient bunnyClient = new BunnyClient(Config.ApiKey);
