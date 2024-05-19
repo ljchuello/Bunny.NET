@@ -1,8 +1,5 @@
 ﻿using Bunny.NET;
-using Bunny.NET.Enums;
-using Bunny.NET.Objets;
 using Bunny.NET.Objets.Dns;
-using Bunny.NET.Objets.Region;
 
 namespace Demo
 {
@@ -19,23 +16,15 @@ namespace Demo
             {
                 BunnyClient bunnyClient = new BunnyClient(await File.ReadAllTextAsync("D:\\BunnyNET.txt"));
 
-                List<Country> list = await bunnyClient.Country.List();
+                long zoneId = 206492;
+                long recordId = 3833193;
 
                 // Get
-                Zone zone = await bunnyClient.Dns.Zone.Get(204058);
+                Record record = await bunnyClient.Dns.Record.Get(zoneId, recordId);
 
-                // Set
-                Record record = new Record();
-                record.Type = RecordType.A;
-                record.Ttl = 300;
-                record.Value = "8.8.8.8";
-                record.Name = "google";
-                record.EnviromentalVariables = new List<EnviromentalVariable>();
-                record.EnviromentalVariables.Add(new EnviromentalVariable { Name = "Lalo", Value = "Landa" });
-                record.EnviromentalVariables.Add(new EnviromentalVariable { Name = "Leonardo", Value = "Chuello" });
-
-                // Create
-                record = await bunnyClient.Dns.Record.Create(zone.Id, record);
+                // Delete
+                await bunnyClient.Dns.Record.Delete(zoneId, record);
+                await bunnyClient.Dns.Record.Delete(zoneId, recordId);
             }
             catch (Exception ex)
             {

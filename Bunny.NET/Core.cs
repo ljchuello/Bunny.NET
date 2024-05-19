@@ -58,6 +58,7 @@ namespace Bunny.NET
                 {
                     case HttpStatusCode.OK:
                     case HttpStatusCode.Created:
+                    case HttpStatusCode.NoContent:
                         return content;
 
                     default:

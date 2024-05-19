@@ -16,12 +16,11 @@ namespace Bunny.NET.Clients
 
         public async Task<List<Region>> List()
         {
-            // Init
-            List<Region> list = new List<Region>();
-
             // Get
             string json = await Core.SendGetRequest(_token, $"/region");
-            list = JsonConvert.DeserializeObject<List<Region>>(json);
+
+            // Set
+            List<Region> list = JsonConvert.DeserializeObject<List<Region>>(json);
 
             // Free
             return list;

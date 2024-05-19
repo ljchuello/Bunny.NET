@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bunny.NET.Objets.Dns;
 using Newtonsoft.Json;
@@ -117,6 +119,60 @@ namespace Bunny.NET.Clients
 
                 // Return
                 return JsonConvert.DeserializeObject<Record>(jsonResponse) ?? new Record();
+            }
+
+            public async Task<List<Record>> List(long? zoneId)
+            {
+                // Send
+                string jsonResponse = await Core.SendGetRequest(_token, $"/dnszone/{zoneId}");
+
+                // Convert
+                Zone zone = JsonConvert.DeserializeObject<Zone>(jsonResponse) ?? new Zone();
+
+                // Get Record's
+                List<Record> list = zone.Records;
+
+                // Return
+                return list;
+            }
+
+            public async Task<Record> Get(long? zoneId, long? recordId)
+            {
+                // Send
+                string jsonResponse = await Core.SendGetRequest(_token, $"/dnszone/{zoneId}");
+
+                // Convert
+                Zone zone = JsonConvert.DeserializeObject<Zone>(jsonResponse) ?? new Zone();
+
+                // Search
+                if (zone.Records.Exists(x => x.Id == recordId) == false)
+                {
+                    throw new Exception($"DNS Record does not exist");
+                }
+
+                // Return
+                return zone.Records.Single(x => x.Id == recordId);
+            }
+
+            public async Task Update(long? zoneId, Record record)
+            {
+                // Preparing raw
+                string raw = JsonConvert.SerializeObject(record, Formatting.Indented);
+
+                // Send
+                await Core.SendPostRequest(_token, $"/dnszone/{zoneId}/records/{record.Id}", raw);
+            }
+
+            public async Task Delete(long? zoneId, long? recordId)
+            {
+                // Send
+                await Core.SendDeleteRequest(_token, $"/dnszone/{zoneId}/records/{recordId}");
+            }
+
+            public async Task Delete(long zoneId, Record record)
+            {
+                // Send
+                await Delete(zoneId, record.Id);
             }
         }
     }
